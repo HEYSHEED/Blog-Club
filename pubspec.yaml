@@ -77,9 +77,9 @@ flutter:
   fonts:
     - family: Avenir
       fonts:
-        - asset: fonts/avenir-regular.otf
-        - asset: fonts/avenir-bold.otf
-          style: 700
+        - asset: assets/fonts/avenir_regular.otf
+        - asset: assets/fonts/avenir_bold.otf
+          weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

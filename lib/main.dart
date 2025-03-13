@@ -5,30 +5,29 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static const defaultFont = 'Avenir';
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final primaryTextColor = Color(0xff0D253c);
+    final secondTextColor = Color(0xff2d4379);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: TextTheme(
+          titleMedium: TextStyle(
+            fontFamily: defaultFont,
+            color: secondTextColor,
+          ),
+          titleLarge: TextStyle(
+            fontFamily: defaultFont,
+            fontWeight: FontWeight.bold,
+            color: primaryTextColor,
+          ),
+        ),
       ),
       home: const HomeScreen(),
     );
@@ -40,6 +39,41 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SingleChildScrollView(child: Column()));
+    final ThemeData themeData = Theme.of(context);
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(32, 16, 32, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Hi, Jonathan!',
+                      style: themeData.textTheme.titleMedium,
+                    ),
+                    Image.asset(
+                      'assets/img/icons/notification.png',
+                      width: 24,
+                      height: 24,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(32, 0, 0, 24),
+                child: Text(
+                  'Explore Today',
+                  style: themeData.textTheme.titleLarge,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
