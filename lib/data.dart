@@ -107,55 +107,55 @@ class AppDatabase {
       ),
     ];
   }
-}
 
-List<Category> get categories {
-  return [
-    Category(id: 101, title: 'Technology', imageFileName: 'large_post_1.jpg'),
-    Category(id: 102, title: 'Cinema', imageFileName: 'large_post_2.jpg'),
-    Category(
-      id: 103,
-      title: 'Transportation',
-      imageFileName: 'large_post_3.jpg',
-    ),
-    Category(id: 104, title: 'Adventure', imageFileName: 'large_post_4.jpg'),
-    Category(
-      id: 105,
-      title: 'Artificial Intelligence',
-      imageFileName: 'large_post_5.jpg',
-    ),
-    Category(id: 106, title: 'Economy', imageFileName: 'large_post_6.jpg'),
-  ];
-}
+  static List<Category> get categories {
+    return [
+      Category(id: 101, title: 'Technology', imageFileName: 'large_post_1.jpg'),
+      Category(id: 102, title: 'Cinema', imageFileName: 'large_post_2.jpg'),
+      Category(
+        id: 103,
+        title: 'Transportation',
+        imageFileName: 'large_post_3.jpg',
+      ),
+      Category(id: 104, title: 'Adventure', imageFileName: 'large_post_4.jpg'),
+      Category(
+        id: 105,
+        title: 'Artificial Intelligence',
+        imageFileName: 'large_post_5.jpg',
+      ),
+      Category(id: 106, title: 'Economy', imageFileName: 'large_post_6.jpg'),
+    ];
+  }
 
-List<PostData> get posts {
-  return [
-    PostData(
-      id: 1,
-      title: 'BMW M5 Competition Review 2021',
-      caption: 'TOP GEAR',
-      isBookmarked: false,
-      likes: '3.1k',
-      time: '1hr ago',
-      imageFileName: 'small_post_1.jpg',
-    ),
-    PostData(
-      id: 0,
-      title: 'MacBook Pro with M1 Pro and M1 Max review',
-      caption: 'THE VERGE',
-      isBookmarked: false,
-      likes: '1.2k',
-      time: '2hr ago',
-      imageFileName: 'small_post_2.jpg',
-    ),
-    PostData(
-      id: 2,
-      title: 'Step design sprint for UX beginner',
-      caption: 'Ux Design',
-      isBookmarked: true,
-      likes: '2k',
-      time: '41hr ago',
-      imageFileName: 'small_post_3.jpg',
-    ),
-  ];
+  static List<PostData> get posts {
+    return [
+      PostData(
+        id: 1,
+        title: 'BMW M5 Competition Review 2021',
+        caption: 'TOP GEAR',
+        isBookmarked: false,
+        likes: '3.1k',
+        time: '1hr ago',
+        imageFileName: 'small_post_1.jpg',
+      ),
+      PostData(
+        id: 0,
+        title: 'MacBook Pro with M1 Pro and M1 Max review',
+        caption: 'THE VERGE',
+        isBookmarked: false,
+        likes: '1.2k',
+        time: '2hr ago',
+        imageFileName: 'small_post_2.jpg',
+      ),
+      PostData(
+        id: 2,
+        title: 'Step design sprint for UX beginner',
+        caption: 'Ux Design',
+        isBookmarked: true,
+        likes: '2k',
+        time: '41hr ago',
+        imageFileName: 'small_post_3.jpg',
+      ),
+    ];
+  }
 }
