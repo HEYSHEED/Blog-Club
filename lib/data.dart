@@ -131,7 +131,7 @@ class AppDatabase {
     return [
       PostData(
         id: 1,
-        title: 'BMW M5 Competition Review 2021',
+        title: 'MacBook Pro with M1 Pro and M1 Max review',
         caption: 'TOP GEAR',
         isBookmarked: false,
         likes: '3.1k',
@@ -140,7 +140,7 @@ class AppDatabase {
       ),
       PostData(
         id: 0,
-        title: 'MacBook Pro with M1 Pro and M1 Max review',
+        title: 'BMW M5 Competition Review 2021',
         caption: 'THE VERGE',
         isBookmarked: false,
         likes: '1.2k',
