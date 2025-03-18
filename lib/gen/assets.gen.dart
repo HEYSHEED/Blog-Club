@@ -7,10 +7,16 @@
 // ignore_for_file: type=lint
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart' as _svg;
+import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
 class $AssetsImgGen {
   const $AssetsImgGen();
+
+  /// Directory path: assets/img/background
+  $AssetsImgBackgroundGen get background => const $AssetsImgBackgroundGen();
 
   /// Directory path: assets/img/icons
   $AssetsImgIconsGen get icons => const $AssetsImgIconsGen();
@@ -22,6 +28,21 @@ class $AssetsImgGen {
   $AssetsImgStoriesGen get stories => const $AssetsImgStoriesGen();
 }
 
+class $AssetsImgBackgroundGen {
+  const $AssetsImgBackgroundGen();
+
+  /// File path: assets/img/background/onboarding.png
+  AssetGenImage get onboarding =>
+      const AssetGenImage('assets/img/background/onboarding.png');
+
+  /// File path: assets/img/background/splash.png
+  AssetGenImage get splash =>
+      const AssetGenImage('assets/img/background/splash.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [onboarding, splash];
+}
+
 class $AssetsImgIconsGen {
   const $AssetsImgIconsGen();
 
@@ -29,8 +50,15 @@ class $AssetsImgIconsGen {
   AssetGenImage get articles =>
       const AssetGenImage('assets/img/icons/Articles.png');
 
+  /// File path: assets/img/icons/Google.png
+  AssetGenImage get google =>
+      const AssetGenImage('assets/img/icons/Google.png');
+
   /// File path: assets/img/icons/Home.png
   AssetGenImage get home => const AssetGenImage('assets/img/icons/Home.png');
+
+  /// File path: assets/img/icons/LOGO.svg
+  SvgGenImage get logo => const SvgGenImage('assets/img/icons/LOGO.svg');
 
   /// File path: assets/img/icons/Menu.png
   AssetGenImage get menu => const AssetGenImage('assets/img/icons/Menu.png');
@@ -38,6 +66,10 @@ class $AssetsImgIconsGen {
   /// File path: assets/img/icons/Search.png
   AssetGenImage get search =>
       const AssetGenImage('assets/img/icons/Search.png');
+
+  /// File path: assets/img/icons/Twitter.png
+  AssetGenImage get twitter =>
+      const AssetGenImage('assets/img/icons/Twitter.png');
 
   /// File path: assets/img/icons/category_1.png
   AssetGenImage get category1 =>
@@ -63,11 +95,14 @@ class $AssetsImgIconsGen {
   AssetGenImage get plus => const AssetGenImage('assets/img/icons/plus.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
+  List<dynamic> get values => [
     articles,
+    google,
     home,
+    logo,
     menu,
     search,
+    twitter,
     category1,
     category2,
     category3,
@@ -280,6 +315,78 @@ class AssetGenImage {
 
   ImageProvider provider({AssetBundle? bundle, String? package}) {
     return AssetImage(_assetName, bundle: bundle, package: package);
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class SvgGenImage {
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = false;
+
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
+
+  final String _assetName;
+  final Size? size;
+  final Set<String> flavors;
+  final bool _isVecFormat;
+
+  _svg.SvgPicture svg({
+    Key? key,
+    bool matchTextDirection = false,
+    AssetBundle? bundle,
+    String? package,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    AlignmentGeometry alignment = Alignment.center,
+    bool allowDrawingOutsideViewBox = false,
+    WidgetBuilder? placeholderBuilder,
+    String? semanticsLabel,
+    bool excludeFromSemantics = false,
+    _svg.SvgTheme? theme,
+    ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated bool cacheColorFilter = false,
+  }) {
+    final _svg.BytesLoader loader;
+    if (_isVecFormat) {
+      loader = _vg.AssetBytesLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+      );
+    } else {
+      loader = _svg.SvgAssetLoader(
+        _assetName,
+        assetBundle: bundle,
+        packageName: package,
+        theme: theme,
+      );
+    }
+    return _svg.SvgPicture(
+      loader,
+      key: key,
+      matchTextDirection: matchTextDirection,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+      placeholderBuilder: placeholderBuilder,
+      semanticsLabel: semanticsLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      colorFilter:
+          colorFilter ??
+          (color == null ? null : ColorFilter.mode(color, colorBlendMode)),
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
+    );
   }
 
   String get path => _assetName;
