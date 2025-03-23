@@ -18,10 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryTextColor = Color(0xff0D253c);
     final secondTextColor = Color(0xff2d4379);
-    final PrimaryScrollController = Color(0xff376AED);
+    final primaryColor = Color(0xff376AED);
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        useMaterial3: true,
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             textStyle: WidgetStatePropertyAll(
@@ -33,7 +34,13 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          primary: primaryColor,
+          onPrimary: Colors.white,
+          onSurface: primaryTextColor,
+          surface: Colors.white,
+        ),
         textTheme: TextTheme(
           titleMedium: TextStyle(
             fontFamily: FontFamily.avenir,
