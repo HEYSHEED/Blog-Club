@@ -1,3 +1,4 @@
+import 'package:blog_club/article.dart';
 import 'package:blog_club/carousel/carousel_slider.dart';
 import 'package:blog_club/data.dart';
 import 'package:blog_club/gen/assets.gen.dart';
@@ -41,6 +42,11 @@ class MyApp extends StatelessWidget {
           onSurface: primaryTextColor,
           surface: Colors.white,
         ),
+        appBarTheme: AppBarTheme(
+          titleSpacing: 32,
+          backgroundColor: Colors.white,
+          foregroundColor: primaryTextColor,
+        ),
         textTheme: TextTheme(
           titleMedium: TextStyle(
             fontFamily: FontFamily.avenir,
@@ -77,7 +83,7 @@ class MyApp extends StatelessWidget {
       //     Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
       //   ],
       // ),
-      home: const SplashScreen(),
+      home: const ArticleScreen(),
     );
   }
 }
