@@ -51,7 +51,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                 selectedTabIndex = loginTab;
                               });
                             },
-                            child: Text('LOGIN', style: tabTextStyle),
+                            child: Text(
+                              'LOGIN',
+                              style: tabTextStyle.apply(
+                                color:
+                                    selectedTabIndex == loginTab
+                                        ? Colors.white
+                                        : Colors.white54,
+                              ),
+                            ),
                           ),
                           TextButton(
                             onPressed: () {
@@ -59,7 +67,15 @@ class _AuthScreenState extends State<AuthScreen> {
                                 selectedTabIndex = signUpTab;
                               });
                             },
-                            child: Text('SIGN UP', style: tabTextStyle),
+                            child: Text(
+                              'SIGN UP',
+                              style: tabTextStyle.apply(
+                                color:
+                                    selectedTabIndex == signUpTab
+                                        ? Colors.white
+                                        : Colors.white54,
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -76,7 +92,10 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: SingleChildScrollView(
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(32, 48, 32, 32),
-                            child: _Login(themeData: themeData),
+                            child:
+                                selectedTabIndex == loginTab
+                                    ? _Login(themeData: themeData)
+                                    : _SignUp(themeData: themeData),
                           ),
                         ),
                       ),
