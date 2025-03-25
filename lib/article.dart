@@ -43,102 +43,128 @@ class ArticleScreen extends StatelessWidget {
           ),
         ),
       ),
-      appBar: AppBar(
-        title: Text('Article'),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_horiz_rounded)),
-          const SizedBox(width: 16),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-              child: Text(
-                'Four Things Every Women Needs To Know',
-                style: themeData.textTheme.headlineMedium,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 0, 16, 32),
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Assets.img.stories.story9.image(
-                      width: 48,
-                      height: 48,
-                      fit: BoxFit.cover,
-                    ),
+      appBar: AppBar(),
+      body: Stack(
+        children: [
+          CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                title: Text('Article'),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.more_horiz_rounded),
                   ),
                   const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                ],
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate.fixed([
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
+                    child: Text(
+                      'Four Things Every Women Needs To Know',
+                      style: themeData.textTheme.headlineMedium,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32, 0, 16, 32),
+                    child: Row(
                       children: [
-                        Text(
-                          'Mahshid Shirazi',
-                          style: themeData.textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w500,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Assets.img.stories.story9.image(
+                            width: 48,
+                            height: 48,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        const SizedBox(width: 4),
-                        const Text('2m ago'),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Mahshid Shirazi',
+                                style: themeData.textTheme.bodyMedium!.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              const Text('2m ago'),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            CupertinoIcons.share,
+                            color: themeData.colorScheme.primary,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            CupertinoIcons.bookmark,
+                            color: themeData.colorScheme.primary,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      CupertinoIcons.bookmark,
-                      color: themeData.colorScheme.primary,
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(32),
+                      topRight: Radius.circular(32),
                     ),
+                    child: Assets.img.background.singlePost.image(),
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      CupertinoIcons.share,
-                      color: themeData.colorScheme.primary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(32),
-                topRight: Radius.circular(32),
-              ),
-              child: Assets.img.background.singlePost.image(),
-            ),
 
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 32, 32, 16),
-              child: Text(
-                'A men’s sexcuality is never your mind responsiblity.',
-                style: themeData.textTheme.titleMedium!.copyWith(
-                  fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32, 32, 32, 16),
+                    child: Text(
+                      'A men’s sexcuality is never your mind responsiblity.',
+                      style: themeData.textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+                    child: Text(
+                      'This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.',
+                      style: themeData.textTheme.bodySmall,
+                    ),
+                  ),
+                ]),
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 116,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    themeData.colorScheme.surface,
+                    themeData.colorScheme.surface.withValues(alpha: 0),
+                  ],
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-              child: Text(
-                'This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.This one got an incredible amount of backlash the last time I said it, so I’m going to say it again: a man’s sexuality is never, ever your responsibility, under any circumstances. Whether it’s the fifth date or your twentieth year of marriage, the correct determining factor for whether or not you have sex with your partner isn’t whether you ought to “take care of him” or “put out” because it’s been a while or he’s really horny — the correct determining factor for whether or not you have sex is whether or not you want to have sex.',
-                style: themeData.textTheme.bodySmall,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   void showSanckBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), behavior: SnackBarBehavior.fixed),
+    );
   }
 }

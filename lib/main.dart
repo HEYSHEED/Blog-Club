@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           foregroundColor: primaryTextColor,
         ),
+        snackBarTheme: SnackBarThemeData(backgroundColor: primaryColor),
         textTheme: TextTheme(
           titleMedium: TextStyle(
             fontFamily: FontFamily.avenir,
