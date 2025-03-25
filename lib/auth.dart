@@ -214,6 +214,8 @@ class _SignUp extends StatelessWidget {
           children: [
             Assets.img.icons.google.image(width: 36, height: 36),
             const SizedBox(width: 4),
+            Assets.img.icons.facebook.image(width: 36, height: 36),
+            const SizedBox(width: 4),
             Assets.img.icons.twitter.image(width: 36, height: 36),
           ],
         ),

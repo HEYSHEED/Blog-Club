@@ -35,12 +35,16 @@ class $AssetsImgBackgroundGen {
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/img/background/onboarding.png');
 
+  /// File path: assets/img/background/single_post.png
+  AssetGenImage get singlePost =>
+      const AssetGenImage('assets/img/background/single_post.png');
+
   /// File path: assets/img/background/splash.png
   AssetGenImage get splash =>
       const AssetGenImage('assets/img/background/splash.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [onboarding, splash];
+  List<AssetGenImage> get values => [onboarding, singlePost, splash];
 }
 
 class $AssetsImgIconsGen {
@@ -67,6 +71,9 @@ class $AssetsImgIconsGen {
   AssetGenImage get search =>
       const AssetGenImage('assets/img/icons/Search.png');
 
+  /// File path: assets/img/icons/Thumbs.svg
+  SvgGenImage get thumbs => const SvgGenImage('assets/img/icons/Thumbs.svg');
+
   /// File path: assets/img/icons/Twitter.png
   AssetGenImage get twitter =>
       const AssetGenImage('assets/img/icons/Twitter.png');
@@ -87,6 +94,10 @@ class $AssetsImgIconsGen {
   AssetGenImage get category4 =>
       const AssetGenImage('assets/img/icons/category_4.png');
 
+  /// File path: assets/img/icons/facebook.png
+  AssetGenImage get facebook =>
+      const AssetGenImage('assets/img/icons/facebook.png');
+
   /// File path: assets/img/icons/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/img/icons/notification.png');
@@ -102,11 +113,13 @@ class $AssetsImgIconsGen {
     logo,
     menu,
     search,
+    thumbs,
     twitter,
     category1,
     category2,
     category3,
     category4,
+    facebook,
     notification,
     plus,
   ];
