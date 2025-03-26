@@ -1,3 +1,4 @@
+import 'package:blog_club/article.dart';
 import 'package:blog_club/carousel/carousel_slider.dart';
 import 'package:blog_club/data.dart';
 import 'package:blog_club/gen/assets.gen.dart';
@@ -307,87 +308,95 @@ class Posts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [const BoxShadow(blurRadius: 10, color: Color(0x1a5282FF))],
-      ),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
-              'assets/img/posts/small/${post.imageFileName}',
-              width: 100,
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    post.caption,
-                    style: const TextStyle(
-                      fontFamily: FontFamily.avenir,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      color: Color(0xff376AED),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    post.title,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Icon(
-                        CupertinoIcons.hand_thumbsup,
-                        size: 17,
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        post.likes,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      const SizedBox(width: 16),
-                      Icon(
-                        CupertinoIcons.clock,
-                        size: 17,
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
-                      ),
-                      Text(
-                        post.time,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            post.isBookmarked
-                                ? CupertinoIcons.bookmark_fill
-                                : CupertinoIcons.bookmark,
-                            size: 17,
-                            color:
-                                Theme.of(context).textTheme.bodyMedium!.color,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+    return InkWell(
+      onTap:
+          () => Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (context) => ArticleScreen())),
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            const BoxShadow(blurRadius: 10, color: Color(0x1a5282FF)),
+          ],
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.asset(
+                'assets/img/posts/small/${post.imageFileName}',
+                width: 100,
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      post.caption,
+                      style: const TextStyle(
+                        fontFamily: FontFamily.avenir,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14,
+                        color: Color(0xff376AED),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      post.title,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Icon(
+                          CupertinoIcons.hand_thumbsup,
+                          size: 17,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          post.likes,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const SizedBox(width: 16),
+                        Icon(
+                          CupertinoIcons.clock,
+                          size: 17,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                        ),
+                        Text(
+                          post.time,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              post.isBookmarked
+                                  ? CupertinoIcons.bookmark_fill
+                                  : CupertinoIcons.bookmark,
+                              size: 17,
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

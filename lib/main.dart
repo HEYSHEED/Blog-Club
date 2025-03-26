@@ -105,39 +105,97 @@ const int profileIndex = 3;
 const double bottomNavigationHeight = 65;
 
 class _MainScreenState extends State<MainScreen> {
-  int selectedCreenIndex = homeIndex; // مقدار اولیه
+  int selectedCreenIndex = homeIndex;
+
+  GlobalKey<NavigatorState> _homeKey = GlobalKey();
+  GlobalKey<NavigatorState> _articleKey = GlobalKey();
+  GlobalKey<NavigatorState> _searchKey = GlobalKey();
+  GlobalKey<NavigatorState> _profileKey = GlobalKey();
+
+  late final map = {
+    homeIndex: _homeKey,
+    articleIndex: _articleKey,
+    searchIndex: _searchKey,
+    profileIndex: _profileKey,
+  };
+
+  Future<bool> _onWillPop() async {
+    final NavigatorState currentSelectedNavigator =
+        map[selectedCreenIndex]!.currentState!;
+    if (currentSelectedNavigator.canPop()) {
+      currentSelectedNavigator.pop();
+      return false;
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Positioned.fill(
-            bottom: bottomNavigationHeight,
-            child: IndexedStack(
-              index: selectedCreenIndex, // مقدار متغیر را به index بدهید
-              children: [
-                HomeScreen(),
-                ArticleScreen(),
-                SearchScreen(),
-                ProfileScreen(),
-              ],
+    return PopScope(
+      onPopInvokedWithResult: (bool didPop, result) async {
+        if (didPop) {
+          return; // اگر صفحه pop شده، خروج انجام شود
+        }
+
+        final bool canExit = await _onWillPop();
+        if (!canExit) {
+          return; // اگر canPop داشت، خروج را متوقف کند
+        }
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            Positioned.fill(
+              bottom: bottomNavigationHeight,
+              child: IndexedStack(
+                index: selectedCreenIndex, // مقدار متغیر را به index بدهید
+                children: [
+                  Navigator(
+                    key: _homeKey,
+                    onGenerateRoute:
+                        (settings) => MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ),
+                  ),
+                  Navigator(
+                    key: _articleKey,
+                    onGenerateRoute:
+                        (settings) => MaterialPageRoute(
+                          builder: (context) => ArticleScreen(),
+                        ),
+                  ),
+                  Navigator(
+                    key: _searchKey,
+                    onGenerateRoute:
+                        (settings) => MaterialPageRoute(
+                          builder: (context) => SearchScreen(),
+                        ),
+                  ),
+                  Navigator(
+                    key: _profileKey,
+                    onGenerateRoute:
+                        (settings) => MaterialPageRoute(
+                          builder: (context) => ProfileScreen(),
+                        ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: _BottomNavigation(
-              selectedIndex: selectedCreenIndex,
-              onTap: (int index) {
-                setState(() {
-                  selectedCreenIndex = index; // تغییر صفحه بر اساس انتخاب
-                });
-              },
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: _BottomNavigation(
+                selectedIndex: selectedCreenIndex,
+                onTap: (int index) {
+                  setState(() {
+                    selectedCreenIndex = index; // تغییر صفحه بر اساس انتخاب
+                  });
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
