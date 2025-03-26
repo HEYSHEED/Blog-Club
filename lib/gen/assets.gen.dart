@@ -58,6 +58,9 @@ class $AssetsImgIconsGen {
   AssetGenImage get google =>
       const AssetGenImage('assets/img/icons/Google.png');
 
+  /// File path: assets/img/icons/Grid.svg
+  SvgGenImage get grid => const SvgGenImage('assets/img/icons/Grid.svg');
+
   /// File path: assets/img/icons/Home.png
   AssetGenImage get home => const AssetGenImage('assets/img/icons/Home.png');
 
@@ -70,6 +73,9 @@ class $AssetsImgIconsGen {
   /// File path: assets/img/icons/Search.png
   AssetGenImage get search =>
       const AssetGenImage('assets/img/icons/Search.png');
+
+  /// File path: assets/img/icons/Table.svg
+  SvgGenImage get table => const SvgGenImage('assets/img/icons/Table.svg');
 
   /// File path: assets/img/icons/Thumbs.svg
   SvgGenImage get thumbs => const SvgGenImage('assets/img/icons/Thumbs.svg');
@@ -109,10 +115,12 @@ class $AssetsImgIconsGen {
   List<dynamic> get values => [
     articles,
     google,
+    grid,
     home,
     logo,
     menu,
     search,
+    table,
     thumbs,
     twitter,
     category1,
