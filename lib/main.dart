@@ -3,6 +3,7 @@ import 'package:blog_club/carousel/carousel_slider.dart';
 import 'package:blog_club/data.dart';
 import 'package:blog_club/gen/assets.gen.dart';
 import 'package:blog_club/gen/fonts.gen.dart';
+import 'package:blog_club/home.dart';
 import 'package:blog_club/profile.dart';
 import 'package:blog_club/splash.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -85,12 +86,86 @@ class MyApp extends StatelessWidget {
       //     Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
       //   ],
       // ),
-      home: const ProfileScreen(),
+      home: const MainScreen(),
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+const int homeIndex = 0;
+const int articleIndex = 1;
+const int searchIndex = 2;
+const int profileIndex = 3;
+const double bottomNavigationHeight = 65;
+
+class _MainScreenState extends State<MainScreen> {
+  int selectedCreenIndex = homeIndex; // مقدار اولیه
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            bottom: bottomNavigationHeight,
+            child: IndexedStack(
+              index: selectedCreenIndex, // مقدار متغیر را به index بدهید
+              children: [
+                HomeScreen(),
+                ArticleScreen(),
+                SearchScreen(),
+                ProfileScreen(),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: _BottomNavigation(
+              selectedIndex: selectedCreenIndex,
+              onTap: (int index) {
+                setState(() {
+                  selectedCreenIndex = index; // تغییر صفحه بر اساس انتخاب
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'What Are You Looking For?',
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
     );
   }
 }
 
 class _BottomNavigation extends StatelessWidget {
+  final Function(int index) onTap;
+  final int selectedIndex;
+
+  const _BottomNavigation({
+    super.key,
+    required this.onTap,
+    required this.selectedIndex,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -115,22 +190,38 @@ class _BottomNavigation extends StatelessWidget {
                   BottomNavigationItem(
                     iconFileName: 'Home.png',
                     activeIconFileName: 'Home.png',
+                    onTap: () {
+                      onTap(homeIndex);
+                    },
+                    isActive: selectedIndex == homeIndex,
                     title: 'Home',
                   ),
                   BottomNavigationItem(
                     iconFileName: 'Articles.png',
                     activeIconFileName: 'Articles.png',
+                    onTap: () {
+                      onTap(articleIndex);
+                    },
+                    isActive: selectedIndex == articleIndex,
                     title: 'Article',
                   ),
-                  SizedBox(width: 8),
+                  Expanded(child: Container()),
                   BottomNavigationItem(
                     iconFileName: 'Search.png',
                     activeIconFileName: 'Search.png',
+                    onTap: () {
+                      onTap(searchIndex);
+                    },
+                    isActive: selectedIndex == searchIndex,
                     title: 'Search',
                   ),
                   BottomNavigationItem(
                     iconFileName: 'Menu.png',
                     activeIconFileName: 'Menu.png',
+                    onTap: () {
+                      onTap(profileIndex);
+                    },
+                    isActive: selectedIndex == profileIndex,
                     title: 'Menu',
                   ),
                 ],
@@ -143,7 +234,7 @@ class _BottomNavigation extends StatelessWidget {
               height: 85,
               alignment: Alignment.topCenter,
               child: Container(
-                height: 65,
+                height: bottomNavigationHeight,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(32.5),
                   color: Color(0xff376AED),
@@ -163,23 +254,41 @@ class BottomNavigationItem extends StatelessWidget {
   final String iconFileName;
   final String activeIconFileName;
   final String title;
+  final bool isActive;
+  final Function() onTap;
 
   const BottomNavigationItem({
     super.key,
     required this.iconFileName,
     required this.activeIconFileName,
     required this.title,
+    required this.onTap,
+    required this.isActive,
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset('assets/img/icons/$iconFileName'),
-        SizedBox(height: 4),
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/img/icons/$iconFileName'),
+            SizedBox(height: 4),
 
-        Text(title, style: Theme.of(context).textTheme.bodySmall),
-      ],
+            Text(
+              title,
+              style: TextStyle(
+                color:
+                    isActive
+                        ? const Color(0xff376AED) // رنگ فعال
+                        : Colors.grey, // رنگ غیرفعال
+                fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
