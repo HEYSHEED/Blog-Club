@@ -106,6 +106,7 @@ const double bottomNavigationHeight = 65;
 
 class _MainScreenState extends State<MainScreen> {
   int selectedCreenIndex = homeIndex;
+  final List<int> _history = [];
 
   GlobalKey<NavigatorState> _homeKey = GlobalKey();
   GlobalKey<NavigatorState> _articleKey = GlobalKey();
@@ -124,6 +125,12 @@ class _MainScreenState extends State<MainScreen> {
         map[selectedCreenIndex]!.currentState!;
     if (currentSelectedNavigator.canPop()) {
       currentSelectedNavigator.pop();
+      return false;
+    } else if (_history.isNotEmpty) {
+      setState(() {
+        selectedCreenIndex = _history.last;
+        _history.removeLast();
+      });
       return false;
     }
     return true;
@@ -189,6 +196,8 @@ class _MainScreenState extends State<MainScreen> {
                 selectedIndex: selectedCreenIndex,
                 onTap: (int index) {
                   setState(() {
+                    _history.remove(selectedCreenIndex);
+                    _history.add(selectedCreenIndex);
                     selectedCreenIndex = index; // تغییر صفحه بر اساس انتخاب
                   });
                 },
