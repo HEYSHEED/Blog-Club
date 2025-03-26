@@ -3,6 +3,7 @@ import 'package:blog_club/carousel/carousel_slider.dart';
 import 'package:blog_club/data.dart';
 import 'package:blog_club/gen/assets.gen.dart';
 import 'package:blog_club/gen/fonts.gen.dart';
+import 'package:blog_club/profile.dart';
 import 'package:blog_club/splash.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
       //     Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
       //   ],
       // ),
-      home: const ArticleScreen(),
+      home: const ProfileScreen(),
     );
   }
 }
